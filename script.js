@@ -68,8 +68,12 @@ function updatePerfume() {
         compositionDiv.innerHTML = composition;
     }
 
-    // Update price
-    totalPrice = 15 + priceAddition;
+    // Update price - السعر يزيد مع نسب الروائح
+    if (totalPercentage === 0) {
+        totalPrice = 0;
+    } else {
+        totalPrice = 10 + priceAddition; // 10 ريال أساسي + سعر الروائح
+    }
     document.getElementById('priceDisplay').textContent = totalPrice.toFixed(2);
 
     // Disable sliders if total reaches 100%
@@ -81,14 +85,23 @@ function updatePerfume() {
 
 function updateBottleColor(colors) {
     const bottleColor = document.getElementById('bottleColor');
+    let totalPercentage = 0;
     
-    if (colors.length === 0) {
+    // حساب مجموع النسب المئوية
+    document.querySelectorAll('.scent-slider').forEach(slider => {
+        totalPercentage += parseInt(slider.value);
+    });
+    
+    // حساب نسبة ملء الزجاجة (الحد الأقصى 100%)
+    const fillHeight = Math.min(totalPercentage, 100);
+    
+    if (fillHeight === 0) {
         bottleColor.style.height = '0%';
         bottleColor.style.background = 'linear-gradient(180deg, #a78bfa, #60a5fa)';
     } else if (colors.length === 1) {
         bottleColor.style.background = colors[0].color;
-        bottleColor.style.height = '60%';
-    } else {
+        bottleColor.style.height = fillHeight + '%';
+    } else if (colors.length > 1) {
         // Mix colors
         let gradientStops = [];
         let currentPosition = 0;
@@ -100,7 +113,9 @@ function updateBottleColor(colors) {
         });
         
         bottleColor.style.background = `linear-gradient(180deg, ${gradientStops.join(', ')})`;
-        bottleColor.style.height = '60%';
+        bottleColor.style.height = fillHeight + '%';
+    } else {
+        bottleColor.style.height = fillHeight + '%';
     }
 }
 

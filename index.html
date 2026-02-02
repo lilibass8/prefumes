@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORVEN - مخصص العطور</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <h1 class="logo">ORVEN</h1>
+                <ul class="nav-links">
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#customizer">مخصص العطر</a></li>
+                    <li><a href="#shipping">التوصيل</a></li>
+                    <li><a href="#contact">اتصل بنا</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="stars"></div>
+        <div class="hero-content">
+            <h2>ركب عطرك الخاص بك</h2>
+            <p>اختر الروائح والنسب المئوية التي تفضلها وأنشئ عطرك الفريد</p>
+            <button class="btn" onclick="document.querySelector('#customizer').scrollIntoView({behavior: 'smooth'})">ابدأ الآن</button>
+        </div>
+    </section>
+
+    <section id="customizer" class="customizer">
+        <div class="container">
+            <h2>مخصص العطر</h2>
+            <div class="customizer-wrapper">
+                <!-- Bottle Display -->
+                <div class="bottle-container">
+                    <div class="bottle">
+                        <div class="bottle-liquid" id="bottleColor"></div>
+                        <div class="bottle-cap"></div>
+                    </div>
+                    <div class="perfume-info">
+                        <h3>عطرك المخصص</h3>
+                        <div class="composition" id="composition">
+                            <p>اختر الروائح لرؤية التركيبة</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Scents Selection -->
+                <div class="scents-panel">
+                    <h3>اختر الروائح</h3>
+                    <div class="scents-list">
+                        <div class="scent-item">
+                            <label>
+                                <input type="checkbox" class="scent-checkbox" data-scent="وردي" data-color="#E91E63">
+                                <span>🌹 فانيليا</span>
+                            </label>
+                            <input type="range" class="scent-slider" min="0" max="100" value="0" data-scent="وردي">
+                            <span class="percentage">0%</span>
+                        </div>
+                        <div class="scent-item">
+                            <label>
+                                <input type="checkbox" class="scent-checkbox" data-scent="مسك" data-color="#8B4789">
+                                <span>🎀 مسك</span>
+                            </label>
+                            <input type="range" class="scent-slider" min="0" max="100" value="0" data-scent="مسك">
+                            <span class="percentage">0%</span>
+                        </div>
+                        <div class="scent-item">
+                            <label>
+                                <input type="checkbox" class="scent-checkbox" data-scent="عود" data-color="#8B6914">
+                                <span>🌳 عود</span>
+                            </label>
+                            <input type="range" class="scent-slider" min="0" max="100" value="0" data-scent="عود">
+                            <span class="percentage">0%</span>
+                        </div>
+                        <div class="scent-item">
+                            <label>
+                                <input type="checkbox" class="scent-checkbox" data-scent="زهري" data-color="#FFB6C1">
+                                <span>🌸 لافندر</span>
+                            </label>
+                            <input type="range" class="scent-slider" min="0" max="100" value="0" data-scent="زهري">
+                            <span class="percentage">0%</span>
+                        </div>
+                        <div class="scent-item">
+                            <label>
+                                <input type="checkbox" class="scent-checkbox" data-scent="حمضي" data-color="#FFD700">
+                                <span>🍋 حمضي</span>
+                            </label>
+                            <input type="range" class="scent-slider" min="0" max="100" value="0" data-scent="حمضي">
+                            <span class="percentage">0%</span>
+                        </div>
+                        <div class="scent-item">
+                            <label>
+                                <input type="checkbox" class="scent-checkbox" data-scent="شرقي" data-color="#D4A574">
+                                <span>✨ بارد</span>
+                            </label>
+                            <input type="range" class="scent-slider" min="0" max="100" value="0" data-scent="شرقي">
+                            <span class="percentage">0%</span>
+                        </div>
+                         <label>
+                                <input type="checkbox" class="scent-checkbox" data-scent="شرقي" data-color="#D4A574">
+                                <span>✨عنبر</span>
+                            </label>
+                            <input type="range" class="scent-slider" min="0" max="100" value="0" data-scent="شرقي">
+                            <span class="percentage">0%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Price & Order -->
+            <div class="order-section">
+                <div class="price-info">
+                    <h3>السعر</h3>
+                    <p class="price-display">السعر: <span id="priceDisplay">15.00</span> ر.ع</p>
+                    <p class="capacity-info">السعة: 50 مل</p>
+                </div>
+                <button class="btn btn-large" onclick="addToCart()">أضف إلى السلة</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="shipping" class="shipping">
+        <div class="container">
+            <h2>تفاصيل التوصيل</h2>
+            <div class="shipping-grid">
+                <div class="shipping-card">
+                    <div class="icon">🚚</div>
+                    <h3>التوصيل السريع</h3>
+                    <p>توصيل خلال 24 ساعة في مسقط</p>
+                    <p class="price">2.50 ر.ع</p>
+                </div>
+                <div class="shipping-card">
+                    <div class="icon">📦</div>
+                    <h3>التوصيل العادي</h3>
+                    <p>توصيل خلال 3-5 أيام</p>
+                    <p class="price">1.50 ر.ع</p>
+                </div>
+                <div class="shipping-card">
+                    <div class="icon">🌍</div>
+                    <h3>التوصيل الدولي</h3>
+                    <p>توصيل إلى خارج السلطنة</p>
+                    <p class="price">5.00 ر.ع</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>عن ORVEN</h4>
+                    <p>متخصصون في تصنيع العطور المخصصة بجودة عالية</p>
+                </div>
+                <div class="footer-section">
+                    <h4>تواصل معنا</h4>
+                    <p>☎️ +968 9000 0000</p>
+                    <p>📧 info@orven.om</p>
+                </div>
+                <div class="footer-section">
+                    <h4>الدفع</h4>
+                    <p>💳 جميع طرق الدفع الآمنة</p>
+                    <p>✅ ضمان الرضا</p>
+                </div>
+            </div>
+            <p class="copyright">&copy; 2026 ORVEN. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

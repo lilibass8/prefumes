@@ -1,0 +1,557 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Cairo', sans-serif;
+    background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+    background-attachment: fixed;
+    color: #333;
+    direction: rtl;
+    text-align: right;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Navigation Bar */
+.navbar {
+    background: rgba(20, 10, 40, 0.95);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 15px rgba(147, 51, 234, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 2rem;
+    color: #a78bfa;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-shadow: 0 0 20px rgba(167, 139, 250, 0.5);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: #e9d5ff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    right: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #a78bfa, #60a5fa);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #a78bfa;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 10rem 2rem;
+    text-align: center;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.stars {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 3s infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+}
+
+.hero-content h2 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    animation: slideDown 0.8s ease;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.hero-content p {
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+    animation: slideUp 0.8s ease 0.2s backwards;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Buttons */
+.btn, .btn-add {
+    background: linear-gradient(135deg, #a78bfa, #60a5fa);
+    color: white;
+    border: none;
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    font-family: 'Cairo', sans-serif;
+}
+
+.btn-large {
+    padding: 1rem 3rem;
+    font-size: 1.1rem;
+}
+
+.btn:hover, .btn-add:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(167, 139, 250, 0.4);
+}
+
+.btn:active, .btn-add:active {
+    transform: translateY(0);
+}
+
+/* Customizer Section */
+.customizer {
+    background: white;
+    padding: 4rem 0;
+    margin: 2rem 0;
+}
+
+.customizer h2 {
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 3rem;
+    color: #667eea;
+    text-shadow: 0 2px 10px rgba(102, 126, 234, 0.1);
+}
+
+.customizer-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+    align-items: center;
+}
+
+/* Bottle Display */
+.bottle-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.bottle {
+    position: relative;
+    width: 120px;
+    height: 280px;
+    background: linear-gradient(90deg, #e0e7ff, #f3e8ff);
+    border-radius: 30px 30px 60px 60px;
+    box-shadow: 0 10px 40px rgba(102, 126, 234, 0.2), inset -2px 2px 8px rgba(255, 255, 255, 0.5);
+}
+
+.bottle-liquid {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 0%;
+    background: linear-gradient(180deg, #a78bfa, #60a5fa);
+    border-radius: 30px 30px 60px 60px;
+    transition: all 0.5s ease;
+    opacity: 0.8;
+}
+
+.bottle-cap {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 20px;
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    border-radius: 5px;
+    box-shadow: 0 3px 10px rgba(245, 158, 11, 0.4);
+}
+
+.perfume-info {
+    text-align: center;
+}
+
+.perfume-info h3 {
+    color: #667eea;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.composition {
+    background: linear-gradient(135deg, #f0f4ff, #f5f3ff);
+    padding: 1.5rem;
+    border-radius: 10px;
+    border-left: 4px solid #667eea;
+    min-height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.composition p {
+    color: #667eea;
+    font-weight: 600;
+}
+
+/* Scents Panel */
+.scents-panel {
+    background: linear-gradient(135deg, #f0f4ff, #f5f3ff);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.15);
+}
+
+.scents-panel h3 {
+    color: #667eea;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.scents-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.scent-item {
+    background: white;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);
+}
+
+.scent-item label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+    color: #667eea;
+}
+
+.scent-item input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    cursor: pointer;
+    accent-color: #667eea;
+}
+
+.scent-slider {
+    width: 100%;
+    height: 6px;
+    border-radius: 5px;
+    background: linear-gradient(90deg, #e0e7ff, #a78bfa);
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.scent-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+}
+
+.scent-slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+}
+
+.percentage {
+    display: block;
+    color: #764ba2;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+/* Order Section */
+.order-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    padding: 2rem;
+    border-radius: 15px;
+    color: white;
+}
+
+.price-info {
+    flex: 1;
+}
+
+.price-info h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.price-display {
+    font-size: 1.8rem;
+    font-weight: 900;
+    margin-bottom: 0.5rem;
+}
+
+.capacity-info {
+    font-size: 0.95rem;
+    opacity: 0.9;
+}
+
+/* Shipping Section */
+.shipping {
+    background: white;
+    padding: 4rem 0;
+}
+
+.shipping h2 {
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 3rem;
+    color: #667eea;
+    text-shadow: 0 2px 10px rgba(102, 126, 234, 0.1);
+}
+
+.shipping-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.shipping-card {
+    background: linear-gradient(135deg, #f0f4ff, #f5f3ff);
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
+}
+
+.shipping-card:hover {
+    border-color: #667eea;
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+}
+
+.shipping-card .icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.shipping-card h3 {
+    color: #667eea;
+    margin-bottom: 0.5rem;
+}
+
+.shipping-card p {
+    color: #764ba2;
+    margin: 0.5rem 0;
+}
+
+.shipping-card .price {
+    font-weight: 900;
+    font-size: 1.3rem;
+    color: #60a5fa;
+}
+
+/* Footer */
+.footer {
+    background: rgba(20, 10, 40, 0.95);
+    color: #e9d5ff;
+    padding: 3rem 0 1rem;
+    margin-top: 4rem;
+    border-top: 2px solid rgba(167, 139, 250, 0.3);
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-section h4 {
+    color: #a78bfa;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.footer-section p {
+    color: #d8b4fe;
+    margin: 0.5rem 0;
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(167, 139, 250, 0.3);
+    color: #a78bfa;
+    font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .customizer-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .order-section {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        gap: 1rem;
+        font-size: 0.9rem;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+    }
+
+    .hero-content h2 {
+        font-size: 2rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .customizer h2,
+    .shipping h2 {
+        font-size: 2rem;
+    }
+
+    .bottle {
+        width: 80px;
+        height: 200px;
+    }
+
+    .scents-panel {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 1.3rem;
+        letter-spacing: 1px;
+    }
+
+    .nav-links {
+        gap: 0.5rem;
+        font-size: 0.7rem;
+    }
+
+    .hero {
+        padding: 5rem 1rem;
+    }
+
+    .hero-content h2 {
+        font-size: 1.5rem;
+    }
+
+    .btn, .btn-add, .btn-large {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    .shipping-grid {
+        grid-template-columns: 1fr;
+    }
+}

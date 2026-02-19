@@ -306,9 +306,17 @@ body {
     display: flex;
     align-items: center;
     cursor: pointer;
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.5rem;
     font-weight: 600;
     color: #667eea;
+}
+
+.scent-description {
+    font-size: 0.85rem;
+    color: #764ba2;
+    margin-bottom: 0.8rem;
+    line-height: 1.4;
+    opacity: 0.8;
 }
 
 .scent-item input[type="checkbox"] {
@@ -387,6 +395,275 @@ body {
 .capacity-info {
     font-size: 0.95rem;
     opacity: 0.9;
+}
+
+/* Reviews Section */
+.reviews {
+    background: linear-gradient(135deg, #f0f4ff, #f5f3ff);
+    padding: 4rem 0;
+}
+
+.reviews h2 {
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 3rem;
+    color: #667eea;
+    text-shadow: 0 2px 10px rgba(102, 126, 234, 0.1);
+}
+
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.review-card {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.15);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+}
+
+.review-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.25);
+}
+
+.review-image {
+    margin-bottom: 1.5rem;
+}
+
+.perfume-bottle-review {
+    width: 80px;
+    height: 180px;
+    border-radius: 20px 20px 40px 40px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    margin: 0 auto;
+    position: relative;
+}
+
+.perfume-bottle-review::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 15px;
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    border-radius: 3px;
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4);
+}
+
+.review-content h3 {
+    color: #a78bfa;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    opacity: 0.8;
+}
+
+.review-rating {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #fbbf24;
+}
+
+.review-text {
+    color: #a78bfa;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    font-style: italic;
+    opacity: 0.7;
+}
+
+.reviewer-name {
+    color: #a78bfa;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    opacity: 0.8;
+}
+
+.perfume-ingredients {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 2px solid #e0e7ff;
+    width: 100%;
+}
+
+.perfume-ingredients strong {
+    color: #667eea;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.perfume-ingredients ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.perfume-ingredients li {
+    color: #a78bfa;
+    padding: 0.3rem 0;
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+.perfume-ingredients strong {
+    color: #a78bfa;
+    display: block;
+    margin-bottom: 0.5rem;
+    opacity: 0.8;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s ease;
+}
+
+.modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-content {
+    background: white;
+    border-radius: 20px;
+    padding: 3rem;
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    animation: slideUp 0.3s ease;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #667eea;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #f0f4ff;
+    transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+    background: #667eea;
+    color: white;
+    transform: rotate(90deg);
+}
+
+.modal-perfume-display {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.modal-bottle {
+    width: 150px;
+    height: 300px;
+    margin: 0 auto 2rem;
+    position: relative;
+    background: linear-gradient(90deg, #e0e7ff, #f3e8ff);
+    border-radius: 40px 40px 80px 80px;
+    box-shadow: 0 15px 50px rgba(102, 126, 234, 0.3);
+}
+
+.modal-bottle-liquid {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 0%;
+    border-radius: 40px 40px 80px 80px;
+    transition: all 0.5s ease;
+    opacity: 0.9;
+}
+
+.modal-bottle-cap {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 75px;
+    height: 25px;
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    border-radius: 5px;
+    box-shadow: 0 3px 10px rgba(245, 158, 11, 0.4);
+}
+
+.modal-perfume-info h2 {
+    color: #667eea;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.modal-composition {
+    background: linear-gradient(135deg, #f0f4ff, #f5f3ff);
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin: 1.5rem 0;
+    border-left: 4px solid #667eea;
+}
+
+.modal-composition h3 {
+    color: #667eea;
+    margin-bottom: 1rem;
+}
+
+.modal-composition ul {
+    list-style: none;
+    padding: 0;
+}
+
+.modal-composition li {
+    color: #764ba2;
+    padding: 0.5rem 0;
+    font-size: 1rem;
 }
 
 /* Shipping Section */

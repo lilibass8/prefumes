@@ -12,9 +12,10 @@
         <nav class="navbar">
             <div class="container">
                 <h1 class="logo">ORVEN</h1>
-                <ul class="nav-links">
+                    <ul class="nav-links">
                     <li><a href="#home">الرئيسية</a></li>
                     <li><a href="#customizer">مخصص العطر</a></li>
+                    <li><a href="#reviews">تجارب العملاء</a></li>
                     <li><a href="#shipping">التوصيل</a></li>
                     <li><a href="#contact">اتصل بنا</a></li>
                 </ul>
@@ -58,6 +59,7 @@
                                 <input type="checkbox" class="scent-checkbox" data-scent="وردي" data-color="#E91E63">
                                 <span>🌹 فانيليا</span>
                             </label>
+                            <p class="scent-description">رائحة فانيليا دافئة وحلوة تمنحك إحساساً بالراحة والأناقة</p>
                             <input type="range" class="scent-slider" min="0" max="100" value="0" data-scent="وردي">
                             <span class="percentage">0%</span>
                         </div>
@@ -66,6 +68,7 @@
                                 <input type="checkbox" class="scent-checkbox" data-scent="مسك" data-color="#8B4789">
                                 <span>🎀 مسك</span>
                             </label>
+                            <p class="scent-description">عطر مسك قوي ومميز يضفي لمسة من الفخامة والجاذبية</p>
                             <input type="range" class="scent-slider" min="0" max="100" value="0" data-scent="مسك">
                             <span class="percentage">0%</span>
                         </div>
@@ -74,6 +77,7 @@
                                 <input type="checkbox" class="scent-checkbox" data-scent="عود" data-color="#8B6914">
                                 <span>🌳 عود</span>
                             </label>
+                            <p class="scent-description">رائحة عود شرقية أصيلة تذكرك بالتراث والأناقة الأصيلة</p>
                             <input type="range" class="scent-slider" min="0" max="100" value="0" data-scent="عود">
                             <span class="percentage">0%</span>
                         </div>
@@ -82,6 +86,7 @@
                                 <input type="checkbox" class="scent-checkbox" data-scent="زهري" data-color="#FFB6C1">
                                 <span>🌸 لافندر</span>
                             </label>
+                            <p class="scent-description">عطر لافندر ناعم ومنعش يمنحك شعوراً بالهدوء والاسترخاء</p>
                             <input type="range" class="scent-slider" min="0" max="100" value="0" data-scent="زهري">
                             <span class="percentage">0%</span>
                         </div>
@@ -90,21 +95,16 @@
                                 <input type="checkbox" class="scent-checkbox" data-scent="حمضي" data-color="#FFD700">
                                 <span>🍋 حمضي</span>
                             </label>
+                            <p class="scent-description">رائحة حمضية منعشة ومفعمة بالحيوية والنشاط</p>
                             <input type="range" class="scent-slider" min="0" max="100" value="0" data-scent="حمضي">
                             <span class="percentage">0%</span>
                         </div>
                         <div class="scent-item">
                             <label>
                                 <input type="checkbox" class="scent-checkbox" data-scent="شرقي" data-color="#D4A574">
-                                <span>✨ بارد</span>
+                                <span>✨ عنبر</span>
                             </label>
-                            <input type="range" class="scent-slider" min="0" max="100" value="0" data-scent="شرقي">
-                            <span class="percentage">0%</span>
-                        </div>
-                         <label>
-                                <input type="checkbox" class="scent-checkbox" data-scent="شرقي" data-color="#D4A574">
-                                <span>✨عنبر</span>
-                            </label>
+                            <p class="scent-description">عطر شرقي بارد وعنبر فاخر يجمع بين الأناقة والتميز</p>
                             <input type="range" class="scent-slider" min="0" max="100" value="0" data-scent="شرقي">
                             <span class="percentage">0%</span>
                         </div>
@@ -116,10 +116,124 @@
             <div class="order-section">
                 <div class="price-info">
                     <h3>السعر</h3>
-                    <p class="price-display">السعر: <span id="priceDisplay">15.00</span> ر.ع</p>
+                    <p class="price-display">السعر: <span id="priceDisplay">0.00</span> ر.ع</p>
                     <p class="capacity-info">السعة: 50 مل</p>
                 </div>
                 <button class="btn btn-large" onclick="addToCart()">أضف إلى السلة</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews" class="reviews">
+        <div class="container">
+            <h2>تجارب العملاء</h2>
+            <div class="reviews-grid">
+                <div class="review-card" onclick="openPerfumeModal({
+                    name: 'عطر فانيليا ومسك',
+                    composition: [
+                        {scent: 'وردي', percentage: 60, color: '#E91E63'},
+                        {scent: 'مسك', percentage: 40, color: '#8B4789'}
+                    ],
+                    review: 'عطر رائع جداً! الرائحة دافئة ومميزة، والجودة ممتازة. أنصح به بشدة.',
+                    reviewer: 'سارة أحمد'
+                })">
+                    <div class="review-image">
+                        <div class="perfume-bottle-review" style="background: linear-gradient(180deg, #E91E63, #8B4789);"></div>
+                    </div>
+                    <div class="review-content">
+                        <h3>عطر فانيليا ومسك</h3>
+                        <div class="review-rating">⭐⭐⭐⭐⭐</div>
+                        <p class="review-text">"عطر رائع جداً! الرائحة دافئة ومميزة، والجودة ممتازة. أنصح به بشدة."</p>
+                        <p class="reviewer-name">- سارة أحمد</p>
+                        <div class="perfume-ingredients">
+                            <strong>المكونات:</strong>
+                            <ul>
+                                <li>فانيليا: 60%</li>
+                                <li>مسك: 40%</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card" onclick="openPerfumeModal({
+                    name: 'عطر عود وعنبر',
+                    composition: [
+                        {scent: 'عود', percentage: 50, color: '#8B6914'},
+                        {scent: 'شرقي', percentage: 50, color: '#D4A574'}
+                    ],
+                    review: 'عطر شرقي أصيل ورائع. الرائحة تدوم طويلاً وتجذب الكثير من الإعجاب.',
+                    reviewer: 'محمد الخالدي'
+                })">
+                    <div class="review-image">
+                        <div class="perfume-bottle-review" style="background: linear-gradient(180deg, #8B6914, #D4A574);"></div>
+                    </div>
+                    <div class="review-content">
+                        <h3>عطر عود وعنبر</h3>
+                        <div class="review-rating">⭐⭐⭐⭐⭐</div>
+                        <p class="review-text">"عطر شرقي أصيل ورائع. الرائحة تدوم طويلاً وتجذب الكثير من الإعجاب."</p>
+                        <p class="reviewer-name">- محمد الخالدي</p>
+                        <div class="perfume-ingredients">
+                            <strong>المكونات:</strong>
+                            <ul>
+                                <li>عود: 50%</li>
+                                <li>عنبر: 50%</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card" onclick="openPerfumeModal({
+                    name: 'عطر لافندر وحمضي',
+                    composition: [
+                        {scent: 'زهري', percentage: 70, color: '#FFB6C1'},
+                        {scent: 'حمضي', percentage: 30, color: '#FFD700'}
+                    ],
+                    review: 'رائحة منعشة ومثالية للنهار. خفيفة ولا تسبب الحساسية.',
+                    reviewer: 'فاطمة السالمي'
+                })">
+                    <div class="review-image">
+                        <div class="perfume-bottle-review" style="background: linear-gradient(180deg, #FFB6C1, #FFD700);"></div>
+                    </div>
+                    <div class="review-content">
+                        <h3>عطر لافندر وحمضي</h3>
+                        <div class="review-rating">⭐⭐⭐⭐</div>
+                        <p class="review-text">"رائحة منعشة ومثالية للنهار. خفيفة ولا تسبب الحساسية."</p>
+                        <p class="reviewer-name">- فاطمة السالمي</p>
+                        <div class="perfume-ingredients">
+                            <strong>المكونات:</strong>
+                            <ul>
+                                <li>لافندر: 70%</li>
+                                <li>حمضي: 30%</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card" onclick="openPerfumeModal({
+                    name: 'عطر مزيج خاص',
+                    composition: [
+                        {scent: 'وردي', percentage: 40, color: '#E91E63'},
+                        {scent: 'زهري', percentage: 35, color: '#FFB6C1'},
+                        {scent: 'حمضي', percentage: 25, color: '#FFD700'}
+                    ],
+                    review: 'عطر مخصص رائع! الخدمة ممتازة والنتيجة تفوق التوقعات.',
+                    reviewer: 'خالد البلوشي'
+                })">
+                    <div class="review-image">
+                        <div class="perfume-bottle-review" style="background: linear-gradient(180deg, #E91E63, #FFB6C1, #FFD700);"></div>
+                    </div>
+                    <div class="review-content">
+                        <h3>عطر مزيج خاص</h3>
+                        <div class="review-rating">⭐⭐⭐⭐⭐</div>
+                        <p class="review-text">"عطر مخصص رائع! الخدمة ممتازة والنتيجة تفوق التوقعات."</p>
+                        <p class="reviewer-name">- خالد البلوشي</p>
+                        <div class="perfume-ingredients">
+                            <strong>المكونات:</strong>
+                            <ul>
+                                <li>فانيليا: 40%</li>
+                                <li>لافندر: 35%</li>
+                                <li>حمضي: 25%</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -171,6 +285,26 @@
             <p class="copyright">&copy; 2026 ORVEN. جميع الحقوق محفوظة.</p>
         </div>
     </footer>
+
+    <!-- Modal for Perfume View -->
+    <div id="perfumeModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closePerfumeModal()">&times;</span>
+            <div class="modal-perfume-display">
+                <div class="modal-bottle">
+                    <div class="modal-bottle-liquid" id="modalBottleLiquid"></div>
+                    <div class="modal-bottle-cap"></div>
+                </div>
+                <div class="modal-perfume-info">
+                    <h2 id="modalPerfumeName"></h2>
+                    <div class="modal-composition" id="modalComposition"></div>
+                    <p style="color: #764ba2; font-style: italic; margin-top: 1rem;">
+                        <strong id="modalReviewer"></strong>: "<span id="modalReview"></span>"
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

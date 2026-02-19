@@ -1,15 +1,16 @@
 // Scents data
 const scents = {
-    'وردي': { color: '#E91E63', basePrice: 3 },
-    'مسك': { color: '#8B4789', basePrice: 4 },
-    'عود': { color: '#8B6914', basePrice: 5 },
-    'زهري': { color: '#FFB6C1', basePrice: 3 },
-    'حمضي': { color: '#FFD700', basePrice: 2 },
-    'شرقي': { color: '#D4A574', basePrice: 4 }
+    'وردي': { color: '#E91E63', basePrice: 3, description: 'رائحة فانيليا دافئة وحلوة تمنحك إحساساً بالراحة والأناقة' },
+    'مسك': { color: '#8B4789', basePrice: 4, description: 'عطر مسك قوي ومميز يضفي لمسة من الفخامة والجاذبية' },
+    'عود': { color: '#8B6914', basePrice: 5, description: 'رائحة عود شرقية أصيلة تذكرك بالتراث والأناقة الأصيلة' },
+    'زهري': { color: '#FFB6C1', basePrice: 3, description: 'عطر لافندر ناعم ومنعش يمنحك شعوراً بالهدوء والاسترخاء' },
+    'حمضي': { color: '#FFD700', basePrice: 2, description: 'رائحة حمضية منعشة ومفعمة بالحيوية والنشاط' },
+    'شرقي': { color: '#D4A574', basePrice: 4, description: 'عطر شرقي بارد وعنبر فاخر يجمع بين الأناقة والتميز' }
 };
 
 let selectedScents = {};
-let totalPrice = 15; // Base price
+let totalPrice = 0; // يبدأ من صفر
+let confirmedPrice = 0; // السعر المؤكد بعد إضافة الروائح
 
 // Initialize scent sliders
 document.querySelectorAll('.scent-slider').forEach(slider => {
@@ -68,13 +69,14 @@ function updatePerfume() {
         compositionDiv.innerHTML = composition;
     }
 
-    // Update price - السعر يزيد مع نسب الروائح
+    // حساب السعر لكن لا يتم عرضه إلا بعد التأكيد
     if (totalPercentage === 0) {
         totalPrice = 0;
     } else {
         totalPrice = 10 + priceAddition; // 10 ريال أساسي + سعر الروائح
     }
-    document.getElementById('priceDisplay').textContent = totalPrice.toFixed(2);
+    // عرض السعر المؤكد فقط، أو 0 إذا لم يتم التأكيد بعد
+    document.getElementById('priceDisplay').textContent = confirmedPrice.toFixed(2);
 
     // Disable sliders if total reaches 100%
     document.querySelectorAll('.scent-slider').forEach(slider => {
@@ -136,6 +138,10 @@ function addToCart() {
         return;
     }
 
+    // تأكيد السعر عند إضافة الروائح
+    confirmedPrice = totalPrice;
+    document.getElementById('priceDisplay').textContent = confirmedPrice.toFixed(2);
+
     // Get composition details
     let composition = 'عطرك المخصص:\n';
     document.querySelectorAll('.scent-slider').forEach(slider => {
@@ -145,7 +151,7 @@ function addToCart() {
         }
     });
 
-    alert(`✅ تمت إضافة العطر إلى السلة!\n\n${composition}\nالسعر: ${totalPrice.toFixed(2)} ر.ع\n\nشكراً لاختيارك ORVEN`);
+    alert(`✅ تمت إضافة العطر إلى السلة!\n\n${composition}\nالسعر: ${confirmedPrice.toFixed(2)} ر.ع\n\nشكراً لاختيارك ORVEN`);
     
     // Scroll to shipping section
     setTimeout(() => {
@@ -191,3 +197,72 @@ function createStars() {
 }
 
 createStars();
+
+// Perfume Modal Functions
+function openPerfumeModal(perfumeData) {
+    const modal = document.getElementById('perfumeModal');
+    const modalBottleLiquid = document.getElementById('modalBottleLiquid');
+    const modalPerfumeName = document.getElementById('modalPerfumeName');
+    const modalComposition = document.getElementById('modalComposition');
+    const modalReview = document.getElementById('modalReview');
+    const modalReviewer = document.getElementById('modalReviewer');
+
+    // Set perfume name
+    modalPerfumeName.textContent = perfumeData.name;
+
+    // Set review
+    modalReview.textContent = perfumeData.review;
+    modalReviewer.textContent = perfumeData.reviewer;
+
+    // Build composition display
+    let compositionHTML = '<h3>تركيبة العطر:</h3><ul>';
+    let totalPercentage = 0;
+    let gradientStops = [];
+    let currentPosition = 0;
+
+    perfumeData.composition.forEach(item => {
+        totalPercentage += item.percentage;
+        compositionHTML += `<li>${item.scent}: ${item.percentage}%</li>`;
+        
+        const nextPosition = currentPosition + item.percentage;
+        gradientStops.push(`${item.color} ${currentPosition}%, ${item.color} ${nextPosition}%`);
+        currentPosition = nextPosition;
+    });
+
+    compositionHTML += '</ul>';
+
+    // Update bottle color
+    if (perfumeData.composition.length === 1) {
+        modalBottleLiquid.style.background = perfumeData.composition[0].color;
+    } else {
+        modalBottleLiquid.style.background = `linear-gradient(180deg, ${gradientStops.join(', ')})`;
+    }
+    modalBottleLiquid.style.height = Math.min(totalPercentage, 100) + '%';
+
+    // Set composition
+    modalComposition.innerHTML = compositionHTML;
+
+    // Show modal
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closePerfumeModal() {
+    const modal = document.getElementById('perfumeModal');
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+// Close modal when clicking outside
+document.getElementById('perfumeModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        closePerfumeModal();
+    }
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closePerfumeModal();
+    }
+});
